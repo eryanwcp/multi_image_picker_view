@@ -7,7 +7,7 @@ import '../multi_image_picker_view.dart';
 class MultiImagePickerController with ChangeNotifier {
   final int maxImages;
   final Future<List<ImageFile>> Function(int pickCount, Object? params) picker;
-  final Future<List<ImageFile>> Function(int pickCount, Object? params) pickerFromCamera;
+  final Future<List<ImageFile>> Function(Object? params) pickerFromCamera;
 
   MultiImagePickerController(
       {this.maxImages = 10,
@@ -60,7 +60,7 @@ class MultiImagePickerController with ChangeNotifier {
     if (maxImages <= _images.length) {
       return false;
     }
-    final pickedImages = await pickerFromCamera(maxImages - _images.length, params);
+    final pickedImages = await pickerFromCamera(params);
     if (pickedImages.isNotEmpty) {
       _addImages(pickedImages);
       notifyListeners();
