@@ -7,10 +7,12 @@ import '../multi_image_picker_view.dart';
 class MultiImagePickerController with ChangeNotifier {
   final int maxImages;
   final Future<List<ImageFile>> Function(int pickCount, Object? params) picker;
+  final Future<List<ImageFile>> Function(int pickCount, Object? params) pickerFromCamera;
 
   MultiImagePickerController(
       {this.maxImages = 10,
       required this.picker,
+      required this.pickerFromCamera,
       Iterable<ImageFile>? images}) {
     if (images != null) {
       _images = List.from(images);
@@ -42,6 +44,23 @@ class MultiImagePickerController with ChangeNotifier {
       return false;
     }
     final pickedImages = await picker(maxImages - _images.length, params);
+    if (pickedImages.isNotEmpty) {
+      _addImages(pickedImages);
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+
+
+  /// manually pick images. i.e. on click on external button.
+  /// this method open Image picking window.
+  /// It returns [Future] of [bool], true if user has selected images.
+  Future<bool> pickCameraImages({Object? params}) async {
+    if (maxImages <= _images.length) {
+      return false;
+    }
+    final pickedImages = await pickerFromCamera(maxImages - _images.length, params);
     if (pickedImages.isNotEmpty) {
       _addImages(pickedImages);
       notifyListeners();

@@ -18,10 +18,11 @@ class DefaultAddMoreWidget extends StatelessWidget {
         child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: backgroundColor ??
-                Theme.of(context).primaryColor.withOpacity(0.2),
+                Theme.of(context).primaryColor.withValues(alpha: 0.2),
             shape: const CircleBorder(),
           ),
-          onPressed: pickerView.controller.pickImages,
+          onPressed: pickerView.controller.pickCameraImages,
+          onLongPress: pickerView.controller.pickImages,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: IconTheme(
