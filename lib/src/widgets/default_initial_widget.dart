@@ -9,13 +9,19 @@ class DefaultInitialWidget extends StatelessWidget {
   final double? height;
   final double? width;
 
+  final GestureTapCallback? onPressed;
+  final GestureLongPressCallback? onLongPress;
+
   const DefaultInitialWidget(
       {super.key,
       this.centerWidget,
       this.margin,
       this.backgroundColor,
       this.height,
-      this.width});
+      this.width,
+      this.onPressed,
+      this.onLongPress,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +42,13 @@ class DefaultInitialWidget extends StatelessWidget {
         child: InkWell(
           overlayColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.pressed)) {
-              return Theme.of(context).colorScheme.primary.withOpacity(0.15);
+              return Theme.of(context).colorScheme.primary.withValues(alpha: 0.15);
             }
-            return Theme.of(context).colorScheme.primary.withOpacity(0.07);
+            return Theme.of(context).colorScheme.primary.withValues(alpha: 0.07);
           }),
           borderRadius: BorderRadius.circular(4),
-          onTap: pickerView.controller.pickImages,
+          onTap: onPressed ?? pickerView.controller.pickCameraImages,
+          onLongPress: onLongPress ?? pickerView.controller.pickImages,
           child: Center(
             child: centerWidget ??
                 Column(

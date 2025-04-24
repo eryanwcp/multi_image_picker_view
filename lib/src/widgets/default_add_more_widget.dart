@@ -5,8 +5,10 @@ import '../multi_image_picker_controller_wrapper.dart';
 class DefaultAddMoreWidget extends StatelessWidget {
   final Widget? icon;
   final Color? backgroundColor;
+  final GestureTapCallback? onPressed;
+  final GestureLongPressCallback? onLongPress;
 
-  const DefaultAddMoreWidget({super.key, this.icon, this.backgroundColor});
+  const DefaultAddMoreWidget({super.key, this.icon, this.backgroundColor,this.onPressed,this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,8 @@ class DefaultAddMoreWidget extends StatelessWidget {
                 Theme.of(context).primaryColor.withValues(alpha: 0.2),
             shape: const CircleBorder(),
           ),
-          onPressed: pickerView.controller.pickCameraImages,
-          onLongPress: pickerView.controller.pickImages,
+          onPressed: onPressed ?? pickerView.controller.pickCameraImages,
+          onLongPress: onLongPress ?? pickerView.controller.pickImages,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: IconTheme(
