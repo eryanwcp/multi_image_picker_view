@@ -6,7 +6,7 @@ class ImageFile {
   String? fileId;
   dynamic data;
   final String name;
-  final String extension;
+  final String? extension;
   final Uint8List? bytes;
   final String? path;
   final DateTime? lastModified;
@@ -18,7 +18,7 @@ class ImageFile {
   int get size => bytes?.length ?? 0;
 
   ImageFile(this.key,
-      {required this.name,this.fileId,this.data, required this.extension, this.bytes, this.path,this.lastModified});
+      {required this.name,this.fileId,this.data, this.extension, this.bytes, this.path,this.lastModified});
 
   List<Object?> get props => [path, bytes];
 
