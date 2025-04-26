@@ -8,7 +8,7 @@ class ImageFile {
   final String extension;
   final Uint8List? bytes;
   final String? path;
-  final DateTime? lastModified;
+  DateTime? lastModified;
 
   /// returns true if image has path. (For web path is not available)
   bool get hasPath => path != null;
