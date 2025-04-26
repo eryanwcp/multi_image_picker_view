@@ -56,7 +56,7 @@ class MultiImagePickerController with ChangeNotifier {
   /// manually pick images. i.e. on click on external button.
   /// this method open Image picking window.
   /// It returns [Future] of [bool], true if user has selected images.
-  Future<bool> pickCameraImages({Object? params}) async {
+  Future<bool> pickCameraImage({Object? params}) async {
     if (maxImages <= _images.length) {
       return false;
     }

@@ -47,7 +47,7 @@ class DefaultInitialWidget extends StatelessWidget {
             return Theme.of(context).colorScheme.primary.withValues(alpha: 0.07);
           }),
           borderRadius: BorderRadius.circular(4),
-          onTap: onPressed ?? pickerView.controller.pickCameraImages,
+          onTap: onPressed ?? pickerView.controller.pickCameraImage,
           onLongPress: onLongPress ?? pickerView.controller.pickImages,
           child: Center(
             child: centerWidget ??

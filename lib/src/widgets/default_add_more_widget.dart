@@ -23,7 +23,7 @@ class DefaultAddMoreWidget extends StatelessWidget {
                 Theme.of(context).primaryColor.withValues(alpha: 0.2),
             shape: const CircleBorder(),
           ),
-          onPressed: onPressed ?? pickerView.controller.pickCameraImages,
+          onPressed: onPressed ?? pickerView.controller.pickCameraImage,
           onLongPress: onLongPress ?? pickerView.controller.pickImages,
           child: Padding(
             padding: const EdgeInsets.all(10),
