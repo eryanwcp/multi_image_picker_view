@@ -8,6 +8,7 @@ class ImageFile {
   final String extension;
   final Uint8List? bytes;
   final String? path;
+  final DateTime? lastModified;
 
   /// returns true if image has path. (For web path is not available)
   bool get hasPath => path != null;
@@ -16,7 +17,7 @@ class ImageFile {
   int get size => bytes?.length ?? 0;
 
   ImageFile(this.key,
-      {required this.name,this.fileId, required this.extension, this.bytes, this.path});
+      {required this.name,this.fileId, required this.extension, this.bytes, this.path,this.lastModified});
 
   List<Object?> get props => [path, bytes];
 
@@ -28,7 +29,8 @@ class ImageFile {
       'name': $name,
       'extension': $extension,
       'bytes': ${bytes?.length},
-      'path': $path
+      'path': $path,
+      'lastModified': $lastModified
     }''';
   }
 }
