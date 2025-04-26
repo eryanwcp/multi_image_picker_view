@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import 'package:multi_image_picker_view/src/multi_image_picker_controller_wrapper.dart';
+import 'package:photo_view/photo_view.dart';
 
 class DefaultDraggableItemWidget extends StatelessWidget {
   const DefaultDraggableItemWidget({
@@ -36,9 +39,31 @@ class DefaultDraggableItemWidget extends StatelessWidget {
           child: Container(
             clipBehavior: Clip.antiAlias,
             decoration: boxDecoration,
-            child: ImageFileView(
-              fit: fit,
-              imageFile: imageFile,
+            child:
+            // ImageFileView(
+            //   fit: fit,
+            //   imageFile: imageFile,
+            // ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                    OneTapWrapper(imageProvider: FileImage(File(imageFile!.path!)),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                child: Hero(
+                  tag: "someTag_${imageFile!.path}",
+                  child: ImageFileView(
+                    fit: fit,
+                    imageFile: imageFile,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
@@ -73,6 +98,33 @@ class DefaultDraggableItemWidget extends StatelessWidget {
             ),
           ),
       ],
+    );
+  }
+}
+
+class OneTapWrapper extends StatelessWidget {
+  const OneTapWrapper({super.key,
+    this.imageProvider,
+  });
+
+  final ImageProvider? imageProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(child: Container(
+        constraints: BoxConstraints.expand(
+          height: MediaQuery.of(context).size.height,
+        ),
+        child: GestureDetector(
+          onTapDown: (_) {
+            Navigator.pop(context);
+          },
+          child: PhotoView(
+            imageProvider: imageProvider,
+          ),
+        ),
+      )),
     );
   }
 }
