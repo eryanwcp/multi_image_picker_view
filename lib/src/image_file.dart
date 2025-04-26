@@ -4,6 +4,7 @@ import 'dart:typed_data';
 class ImageFile {
   final String key;
   String? fileId;
+  dynamic data;
   final String name;
   final String extension;
   final Uint8List? bytes;
@@ -17,7 +18,7 @@ class ImageFile {
   int get size => bytes?.length ?? 0;
 
   ImageFile(this.key,
-      {required this.name,this.fileId, required this.extension, this.bytes, this.path,this.lastModified});
+      {required this.name,this.fileId,this.data, required this.extension, this.bytes, this.path,this.lastModified});
 
   List<Object?> get props => [path, bytes];
 
@@ -26,6 +27,7 @@ class ImageFile {
     return '''{
       'key': $key,
       'fileId': $fileId,
+      'data': $data,
       'name': $name,
       'extension': $extension,
       'bytes': ${bytes?.length},
