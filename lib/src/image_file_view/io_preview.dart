@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:multi_image_picker_view/src/image_file_view/error_preview.dart';
 
 import '../image_file.dart';

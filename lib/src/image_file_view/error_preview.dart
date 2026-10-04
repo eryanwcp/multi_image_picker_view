@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:multi_image_picker_view/src/image_file.dart';
 
 class ErrorPreview extends StatelessWidget {

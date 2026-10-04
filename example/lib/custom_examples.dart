@@ -3,7 +3,7 @@ import 'package:example/custom/files_custom_example.dart';
 import 'package:example/custom/full_custom_example.dart';
 import 'package:example/custom/initial_images_custom_example.dart';
 import 'package:example/custom/selectable_custom_example.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum CustomExamples {
   fullCustom,

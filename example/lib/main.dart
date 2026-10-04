@@ -1,5 +1,5 @@
 import 'package:example/custom_examples.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 import 'picker.dart';
